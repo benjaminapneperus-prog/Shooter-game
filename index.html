@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#1b2a4a" />
+  <title>Kasse-Boom!</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <div id="app">
+    <div id="stage">
+      <div id="hud">
+        <div id="squares-box"><span class="sq"></span><b id="squares">0</b></div>
+        <div id="progress"><div id="progress-fill"></div><span id="level-label">Bane 1</span></div>
+        <button id="mute" aria-label="Lyd">🔊</button>
+      </div>
+      <div id="banner" class="hidden">
+        <div id="banner-text"></div>
+        <button id="cancel-pick" class="hidden">Nej tak</button>
+      </div>
+      <div id="pk-hint" class="hidden">👆</div>
+    </div>
+    <div id="controls">
+      <button class="wbtn" id="btn0"></button>
+      <button class="wbtn" id="btn1"></button>
+    </div>
+
+    <div id="screen-start" class="screen">
+      <div class="card">
+        <h1>Kasse-Boom!</h1>
+        <p>Skyd alle kasserne og saml jernfirkanter!</p>
+        <p class="rot">📱↔️ Hold telefonen på siden</p>
+        <button class="big" id="play">Spil ▶</button>
+        <button class="link" id="reset">Start forfra</button>
+      </div>
+    </div>
+
+    <div id="screen-shop" class="screen hidden">
+      <div class="card wide">
+        <h2>Bane klaret! 🎉</h2>
+        <p id="shop-earned"></p>
+        <div id="shop-total"><span class="sq"></span><b id="shop-squares">0</b></div>
+        <div id="shop-list"></div>
+        <button class="big" id="next">Næste bane ▶</button>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="/src/game.js"></script>
+</body>
+</html>
