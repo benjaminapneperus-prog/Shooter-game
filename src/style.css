@@ -56,3 +56,6 @@ button.link { display: block; margin: 14px auto 0; background: none; border: 0; 
 .wcard .up { padding: 10px; border-radius: 12px; border: 0; background: #43a047; color: #fff; font-family: inherit; font-size: 17px; font-weight: bold; cursor: pointer; }
 .wcard .up:disabled { background: #b0bec5; cursor: default; }
 @media (max-height: 520px) { #banner { top: 56px; padding: 6px 14px; } #hud { padding: 6px 10px; } }
+
+.rot { display: none; font-size: 18px !important; color: #546e7a; }
+@media (orientation: portrait) { .rot { display: block; } }

@@ -34,7 +34,7 @@ function resize() {
   const w = Math.max(1, stage.clientWidth), h = Math.max(1, stage.clientHeight);
   renderer.setSize(w, h);
   camera.aspect = w / h;
-  camDist = Math.min(34, Math.max(11, 17 / (2 * Math.tan((FOV * Math.PI) / 360) * camera.aspect)));
+  camDist = Math.min(34, Math.max(11, (camera.aspect < 1 ? 11 : 17) / (2 * Math.tan((FOV * Math.PI) / 360) * camera.aspect)));
   camera.updateProjectionMatrix();
 }
 new ResizeObserver(resize).observe(stage);
