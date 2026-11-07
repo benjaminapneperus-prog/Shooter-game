@@ -1,0 +1,58 @@
+:root { --ui: #1b2a4a; }
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: #111; font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif; touch-action: none; overscroll-behavior: none; }
+#app { position: fixed; inset: 0; display: flex; flex-direction: column; }
+#stage { position: relative; flex: 1; min-height: 0; overflow: hidden; }
+#stage canvas { display: block; width: 100%; height: 100%; }
+.hidden { display: none !important; }
+
+#hud { position: absolute; top: 0; left: 0; right: 0; display: flex; gap: 12px; align-items: center; padding: 10px 14px; pointer-events: none; }
+#squares-box { background: rgba(20,30,60,.75); color: #fff; padding: 6px 14px; border-radius: 999px; font-size: 24px; display: flex; gap: 8px; align-items: center; }
+#squares-box.pop { animation: pop .18s; }
+@keyframes pop { 50% { transform: scale(1.25); } }
+.sq { display: inline-block; width: .85em; height: .85em; border-radius: 3px; background: linear-gradient(135deg, #fff, #9fb0bd 55%, #6e7f8c); border: 2px solid #4b5a66; vertical-align: -0.1em; margin: 0 .15em; }
+#progress { flex: 1; height: 22px; background: rgba(20,30,60,.6); border-radius: 999px; position: relative; overflow: hidden; }
+#progress-fill { height: 100%; width: 0; background: linear-gradient(90deg, #ffd54a, #ff9800); border-radius: 999px; }
+#level-label { position: absolute; inset: 0; text-align: center; color: #fff; font-weight: bold; font-size: 14px; line-height: 22px; text-shadow: 0 1px 2px #000; }
+#mute { pointer-events: auto; background: rgba(20,30,60,.75); border: 0; color: #fff; font-size: 22px; width: 44px; height: 44px; border-radius: 50%; }
+
+#banner { position: absolute; top: 70px; left: 50%; transform: translateX(-50%); background: rgba(255,255,255,.95); color: var(--ui); padding: 12px 22px; border-radius: 22px; font-size: clamp(18px, 3.2vw, 28px); text-align: center; box-shadow: 0 6px 20px rgba(0,0,0,.3); max-width: 92%; animation: drop .3s; }
+@keyframes drop { from { transform: translate(-50%, -30px); opacity: 0; } }
+#banner .big-ic { font-size: 1.6em; vertical-align: middle; }
+#cancel-pick { margin-top: 8px; padding: 8px 18px; font-size: 16px; border-radius: 999px; border: 2px solid #90a4ae; background: #fff; color: #546e7a; }
+#pk-hint { position: absolute; transform: translate(-50%, -100%); font-size: 54px; pointer-events: none; animation: bob .7s infinite alternate; filter: drop-shadow(0 3px 4px rgba(0,0,0,.4)); }
+@keyframes bob { to { transform: translate(-50%, -80%); } }
+
+#controls { display: flex; gap: 12px; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); background: var(--ui); height: clamp(110px, 24vh, 190px); }
+.wbtn { --c: #29b6f6; flex: 1; position: relative; overflow: hidden; border: 4px solid var(--c); border-radius: 26px; background: #2a3c64; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-family: inherit; touch-action: none; box-shadow: 0 6px 0 rgba(0,0,0,.35); transition: transform .05s; }
+.wbtn.down { transform: translateY(5px); box-shadow: 0 1px 0 rgba(0,0,0,.35); background: color-mix(in srgb, var(--c) 35%, #2a3c64); }
+.wbtn .cd { position: absolute; left: 0; right: 0; bottom: 0; height: 0; background: rgba(0,0,0,.45); pointer-events: none; }
+.wbtn .ic { font-size: clamp(36px, 8vh, 64px); line-height: 1; position: relative; }
+.wbtn .nm { font-size: clamp(14px, 2.6vh, 22px); font-weight: bold; position: relative; }
+.pips { font-size: 10px; letter-spacing: 1px; color: var(--c); position: relative; }
+.pips i { font-style: normal; opacity: .25; color: #fff; }
+.wbtn.choose { animation: pulse .5s infinite alternate; border-color: #fff; }
+@keyframes pulse { to { transform: scale(1.04); box-shadow: 0 0 28px var(--c); } }
+
+.screen { position: absolute; inset: 0; background: rgba(15,25,55,.55); display: flex; align-items: center; justify-content: center; padding: 14px; overflow: auto; touch-action: pan-y; }
+.card { background: #fff; color: var(--ui); border-radius: 30px; padding: 26px 34px; text-align: center; box-shadow: 0 12px 40px rgba(0,0,0,.4); max-width: 100%; }
+.card.wide { width: min(900px, 100%); max-height: 100%; overflow: auto; }
+.card h1 { font-size: clamp(40px, 9vw, 72px); margin: 0 0 6px; color: #ff6d00; text-shadow: 3px 3px 0 #ffd54a; }
+.card h2 { font-size: clamp(28px, 6vw, 44px); margin: 0 0 6px; }
+.card p { font-size: 20px; margin: 6px 0 16px; }
+button.big { font-family: inherit; font-size: 30px; font-weight: bold; padding: 14px 40px; border-radius: 999px; border: 0; color: #fff; background: linear-gradient(#ffa000, #ff6d00); box-shadow: 0 6px 0 #b34700; cursor: pointer; }
+button.big:active { transform: translateY(4px); box-shadow: 0 2px 0 #b34700; }
+button.link { display: block; margin: 14px auto 0; background: none; border: 0; color: #78909c; text-decoration: underline; font-size: 14px; cursor: pointer; }
+#shop-total { font-size: 30px; font-weight: bold; margin-bottom: 10px; }
+#shop-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin: 12px 0 18px; text-align: left; }
+.wcard { --c: #29b6f6; border: 4px solid var(--c); border-radius: 20px; padding: 10px; background: #f4f8fb; display: flex; flex-direction: column; gap: 8px; }
+.wc-top { display: flex; gap: 10px; align-items: center; }
+.wc-top .ic { font-size: 40px; }
+.wcard .pips { color: var(--c); }
+.wcard .pips i { color: #90a4ae; }
+.wc-slots { display: flex; gap: 6px; }
+.wc-slots button { flex: 1; padding: 6px; border-radius: 10px; border: 2px solid #b0bec5; background: #fff; font-family: inherit; font-weight: bold; color: #546e7a; cursor: pointer; }
+.wc-slots button.on { background: var(--c); border-color: var(--c); color: #fff; }
+.wcard .up { padding: 10px; border-radius: 12px; border: 0; background: #43a047; color: #fff; font-family: inherit; font-size: 17px; font-weight: bold; cursor: pointer; }
+.wcard .up:disabled { background: #b0bec5; cursor: default; }
+@media (max-height: 520px) { #banner { top: 56px; padding: 6px 14px; } #hud { padding: 6px 10px; } }
